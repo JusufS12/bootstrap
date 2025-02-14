@@ -49,18 +49,20 @@ def forma():
     prog_jezici = ['C++', 'Java', 'JavaScript', 'Python', 'Fortran', 'Basic', 'Ruby', 'Rust']
 
     data = json_extract('data.json')
+    
+    redni_broj = len(data) + 1
 
     if request.method == 'POST':
         ucenik = request.form['ucenik']
         jezik = request.form['programski_jezik']
 
-        redni_broj = len(data) + 1
-
         json_append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik}, 'data.json')
+        
+        redni_broj += 1
         
         return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=1)
     
-    return render_template('form.html', redni_broj=len(data) + 1, prog_jezici=prog_jezici, uspjeh=0)
+    return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=0)
 
 # Error pages
 @app.errorhandler(404)
