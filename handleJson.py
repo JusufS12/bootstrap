@@ -6,6 +6,7 @@ class HandleJson:
     def __init__(self, path: str):
         self.path = path
         self.data = []
+        self.extract()
             
     def extract(self):
         if os.path.exists(self.path):
