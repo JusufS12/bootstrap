@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap
-import json, os
+from handleJson import HandleJson
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -23,23 +23,6 @@ def columns_unequal_3():
     return render_template('columns_unequal_3.html')
 
 
-def json_extract(path):
-    if os.path.exists(path):
-        with open(path, mode='r', encoding='utf-8') as json_datoteka:
-            data = json.load(json_datoteka)
-            json_datoteka.close()
-    else:
-        data = []
-    
-    return data
-
-def json_append(data, path):
-    data_existing = json_extract('data.json')
-
-    with open(path, mode='w', encoding='utf-8') as json_datoteka:
-            data_existing.append(data)
-            json.dump(data_existing, json_datoteka)
-            json_datoteka.close()
 
 
 
@@ -47,23 +30,26 @@ def json_append(data, path):
 def forma():
 
     prog_jezici = ['C++', 'Java', 'JavaScript', 'Python', 'Fortran', 'Basic', 'Ruby', 'Rust']
-
-    data = json_extract('data.json')
     
-    redni_broj = len(data) + 1
+    data = HandleJson('data.json')
+    
+    redni_broj = len(data.data) + 1
 
     if request.method == 'POST':
         ucenik = request.form['ucenik']
         jezik = request.form['programski_jezik']
 
-        json_append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik}, 'data.json')
+        data.append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik})
         
         redni_broj += 1
         
-        # return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=1)
         return redirect(url_for('forma'))
     
-    return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=0)
+    return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici)
+
+
+
+
 
 # Error pages
 @app.errorhandler(404)
