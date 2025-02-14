@@ -2,25 +2,31 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap
 import json, os
 
+
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
+
 
 @app.route('/')
 def index():
     text = 'ovo je početna stranica!'
     return render_template('index.html',text=text)
 
+
 @app.route('/columns_equal_3')
 def columns_equal_3():  
     return render_template('columns_equal_3.html')
+
 
 @app.route('/columns_unequal_2')
 def columns_unequal_2():  
     return render_template('columns_unequal_2.html')
 
+
 @app.route('/columns_unequal_3')
 def columns_unequal_3():  
     return render_template('columns_unequal_3.html')
+
 
 
 def json_extract(path):
@@ -30,40 +36,34 @@ def json_extract(path):
             json_datoteka.close()
     else:
         data = []
-    
     return data
 
 def json_append(data, path):
     data_existing = json_extract('data.json')
-
     with open(path, mode='w', encoding='utf-8') as json_datoteka:
             data_existing.append(data)
             json.dump(data_existing, json_datoteka)
             json_datoteka.close()
-
-
 
 @app.route("/forma", methods=['get', 'post'])
 def forma():
 
     prog_jezici = ['C++', 'Java', 'JavaScript', 'Python', 'Fortran', 'Basic', 'Ruby', 'Rust']
 
-    data = json_extract('data.json')
-    
+    data = json_extract('data.json')    
     redni_broj = len(data) + 1
 
     if request.method == 'POST':
         ucenik = request.form['ucenik']
         jezik = request.form['programski_jezik']
 
-        json_append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik}, 'data.json')
-        
+        json_append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik}, 'data.json')        
         redni_broj += 1
         
-        # return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=1)
         return redirect(url_for('forma'))
     
     return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=0)
+
 
 # Error pages
 @app.errorhandler(404)
