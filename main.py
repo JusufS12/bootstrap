@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap
 import json, os
 
@@ -60,7 +60,8 @@ def forma():
         
         redni_broj += 1
         
-        return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=1)
+        # return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=1)
+        return redirect(url_for('forma'))
     
     return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=0)
 
