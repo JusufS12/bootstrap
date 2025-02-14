@@ -42,7 +42,7 @@ def forma():
         redni_broj = len(data) + 1
 
         with open('data.json', mode='w', encoding='utf-8') as json_datoteka:
-            data.append({"redni_broj": 1, "ucenik": ucenik, "programski_jezik": jezik})
+            data.append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik})
             json.dump(data, json_datoteka)
             json_datoteka.close()
 
