@@ -42,7 +42,7 @@ def forma():
         jezik = request.form['programski_jezik']
 
         data.append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik})
-        
+
         redni_broj += 1
         
         return redirect(url_for('forma'))
