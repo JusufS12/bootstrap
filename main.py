@@ -58,9 +58,9 @@ def forma():
 
         json_append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik}, 'data.json')
         
-        return render_template('form.html', redni_broj=1, prog_jezici=prog_jezici, uspjeh=1)
+        return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=1)
     
-    return render_template('form.html', redni_broj=1, prog_jezici=prog_jezici, uspjeh=0)
+    return render_template('form.html', redni_broj=len(data) + 1, prog_jezici=prog_jezici, uspjeh=0)
 
 # Error pages
 @app.errorhandler(404)
