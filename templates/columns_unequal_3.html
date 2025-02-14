@@ -1,0 +1,36 @@
+<!-- INCLUDE -->
+
+{% extends "bootstrap/base.html" %} {% block navbar %} {% include "header.html"
+%} {% include "footer.html" %} {% endblock %} {% block head %} {{ super() }} {%
+endblock %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    
+    <!--STUPAC 1-->
+    <div class="col-sm-3" style="background-color: lavender">
+      <p>.col-sm-3</p>
+      <p><b>Prvi stupac</b></p>
+    </div>
+
+    <!--STUPAC 2-->
+    <div class="col-sm-6" style="background-color: lavenderblush">
+      <p>.col-sm-6</p>
+      <p><b>Drugi stupac</b></p>
+      <p>Tri nejednaka stupca</p>
+      <p>
+        Stupci će se automatski slagati jedan na drugi kada je širina zaslona
+        manja od 768 piksela.
+      </p>
+    </div>
+
+    <!--STUPAC 3-->
+    <div class="col-sm-3" style="background-color: lavender">
+      <p>.col-sm-3</p>
+      <p><b>Treći stupac</b></p>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "bootstrap/base.html" %}
+
+{% block navbar %}
+{% include 'header.html' %}
+{% include 'footer.html' %}	
+{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+	
+<div class="container">
+  <div class="row">
+    
+    <!--STUPAC 1-->
+    <div class="col-sm-2">
+    </div>
+
+    <!--STUPAC 2-->
+    <div class="col-sm-8">
+			<div class="row">
+				<form class="verticalform" action="/forma" method="POST">
+					
+					<div class="form-gorup">
+						<h1 value="redni_broj" name="redni_broj">
+							Podatak broj: {{ redni_broj }}
+						</h1>
+					</div>
+
+					<br>
+					<label for="exampleDropdown">Učenik:</label>
+					<input type="text" class="form-control dp" name="ucenik">
+					<br>
+
+					<label for="exampleDropdown">Programski jezik:</label>
+					
+					<select class="form-control" id="exampleDropdown" name="programski_jezik">
+						
+						<option select>Otvori za odabir</option>
+
+						{% for jezik in prog_jezici %}
+						<option value="{{jezik}}">{{jezik}}</option>
+						{% endfor %}
+					
+					</select>
+					<br>
+
+					<button type="submit" class="btn btn-primary">
+						Dodaj
+					</button>
+				
+				</form>
+			</div>
+    </div>
+
+    <!--STUPAC 3-->
+    <div class="col-sm-2">
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
