@@ -22,18 +22,33 @@ def columns_unequal_2():
 def columns_unequal_3():  
     return render_template('columns_unequal_3.html')
 
+
+def json_extract(path):
+    if os.path.exists(path):
+        with open(path, mode='r', encoding='utf-8') as json_datoteka:
+            data = json.load(json_datoteka)
+            json_datoteka.close()
+    else:
+        data = []
+    
+    return data
+
+def json_append(data, path):
+    data_existing = json_extract('data.json')
+
+    with open(path, mode='w', encoding='utf-8') as json_datoteka:
+            data_existing.append(data)
+            json.dump(data_existing, json_datoteka)
+            json_datoteka.close()
+
+
+
 @app.route("/forma", methods=['get', 'post'])
 def forma():
 
     prog_jezici = ['C++', 'Java', 'JavaScript', 'Python', 'Fortran', 'Basic', 'Ruby', 'Rust']
 
-    if os.path.exists('data.json'):
-        with open('data.json', mode='r', encoding='utf-8') as json_datoteka:
-            data = json.load(json_datoteka)
-            json_datoteka.close()
-    else:
-        data = []
-
+    data = json_extract('data.json')
 
     if request.method == 'POST':
         ucenik = request.form['ucenik']
@@ -41,15 +56,11 @@ def forma():
 
         redni_broj = len(data) + 1
 
-        with open('data.json', mode='w', encoding='utf-8') as json_datoteka:
-            data.append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik})
-            json.dump(data, json_datoteka)
-            json_datoteka.close()
-
+        json_append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik}, 'data.json')
         
-        # return render_template('form.html', redni_broj=1, prog_jezici=prog_jezici)
+        return render_template('form.html', redni_broj=1, prog_jezici=prog_jezici, uspjeh=1)
     
-    return render_template('form.html', redni_broj=1, prog_jezici=prog_jezici)
+    return render_template('form.html', redni_broj=1, prog_jezici=prog_jezici, uspjeh=0)
 
 # Error pages
 @app.errorhandler(404)
