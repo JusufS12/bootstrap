@@ -11,7 +11,8 @@ Aplikacija koja koristi Flask-Bootstrap za oblikovanje s tri različita primjera
 
 2. Kreirajte virtualno okruženje
     - py -m venv venv
-    - venv/scripts/activate.ps1  # Za Windows
+    - venv/scripts/activate.ps1  # Za PowerShell
+    - source venv/bin/activate   # Za Bash (I sve ljuske koje postuju POSIX standarde)
 
 3. Instalacija paketa
     - pip install -r requirements.txt
@@ -23,9 +24,3 @@ Aplikacija koja koristi Flask-Bootstrap za oblikovanje s tri različita primjera
 
 ## 3. Generiranje requirements.txt
 - pip freeze > requirements.txt
-
-## 4. Funkcionalnosti
-- Flask-Bootstrap 3
-- Tri jednaka stupca
-- Dva nejednaka stupca
-- Tri nejednaka stupca
