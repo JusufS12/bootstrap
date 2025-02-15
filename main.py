@@ -52,7 +52,8 @@ def forma():
 
 @app.route('/rezultati')
 def rezultati():
-    return render_template('form_results.html')
+  hj = HandleJson('data.json')
+  return render_template('form_results.html', data=hj.extract())
 
 
 # Error pages
