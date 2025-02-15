@@ -65,6 +65,11 @@ def forma():
     return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici, uspjeh=0)
 
 
+@app.route('/rezultati')
+def rezultati():
+    return render_template('form_results.html')
+
+
 # Error pages
 @app.errorhandler(404)
 def page_not_found(e):
