@@ -32,17 +32,19 @@
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
-                  <th>Redni broj</th>
-                  <th>Ucenik</th>
-                  <th>Programski jezik</th>
+                  <th>Pacijent</th>
+                  <th>Ime</th>
+                  <th>Prezime</th>
+                  <th>Dijagnoza</th>
                 </tr>
               </thead>
               <tbody>
                 {% for lis in data %}
                 <tr>
-                  <td>{{lis.redni_broj}}</td>
-                  <td>{{lis.ucenik}}</td>
-                  <td>{{lis.programski_jezik}}</td>
+                  <td>{{lis.pacijent}}</td>
+                  <td>{{lis.ime}}</td>
+                  <td>{{lis.prezime}}</td>
+                  <td>{{lis.dijagnoza}}</td>
                 </tr>
                 {% endfor %}
               </tbody>
