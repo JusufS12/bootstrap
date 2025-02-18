@@ -33,11 +33,17 @@
               <thead>
                 <tr>
                   <th>Redni broj</th>
+                  <th>Ucenik</th>
+                  <th>Programski jezik</th>
                 </tr>
               </thead>
               <tbody>
                 {% for lis in data %}
-                <tr><td>{{lis.redni_broj}}</td></tr>
+                <tr>
+                  <td>{{lis.redni_broj}}</td>
+                  <td>{{lis.ucenik}}</td>
+                  <td>{{lis.programski_jezik}}</td>
+                </tr>
                 {% endfor %}
               </tbody>
             </table>
