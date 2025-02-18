@@ -50,6 +50,12 @@ def forma():
     return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici)
 
 
+@app.route('/rezultati', methods=['get', 'post'])
+def results():
+    hj = HandleJson('data.json')
+    return render_template('data.html', data=hj.extract())
+
+
 # Error pages
 @app.errorhandler(404)
 def page_not_found(e):
