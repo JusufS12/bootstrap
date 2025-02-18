@@ -1,0 +1,57 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Forma{% endblock%}
+{% block head %}
+{{ super() }}
+<link
+      rel="icon"
+      href="{{ url_for('.static', filename='teacher_education_school_lecture_student_icon_141984.ico') }}"
+      type="image/x-icon"
+/>
+{% endblock %}
+
+{% block navbar %}
+{% include 'header.html' %}
+{% include 'footer.html' %}	
+{% endblock %}
+
+{% block content %}
+  
+<div class="container">
+  <div class="row">
+    
+    <!--STUPAC 1-->
+    <div class="col-sm-2">
+    </div>
+
+    <!--STUPAC 2-->
+    <div class="col-sm-8 text-center">
+      <div class="page-header">
+        <div class="row">
+          <ul>
+            <table>
+              <thead>
+                <tr>
+                  <th>Redni broj</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for lis in data %}
+                <tr><td>{{lis.redni_broj}}</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+
+    <!--STUPAC 3-->
+    <div class="col-sm-2">
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
