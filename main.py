@@ -31,23 +31,24 @@ def columns_unequal_3():
 @app.route("/forma", methods=['get', 'post'])
 def forma():
 
-    prog_jezici = ['C++', 'Java', 'JavaScript', 'Python', 'Fortran', 'Basic', 'Ruby', 'Rust']
+    dijagnoze = ['C++', 'Java', 'JavaScript', 'Python', 'Fortran', 'Basic', 'Ruby', 'Rust']
     
     data = HandleJson('data.json')
     
     redni_broj = len(data.data) + 1
 
     if request.method == 'POST':
-        ucenik = request.form['ucenik']
-        jezik = request.form['programski_jezik']
+        ime = request.form['ime']
+        prezime = request.form['prezime']
+        dijagnoza = request.form['dijagnoza']
 
-        data.append({"redni_broj": redni_broj, "ucenik": ucenik, "programski_jezik": jezik})
+        data.append({"pacijent": redni_broj, "ime": ime, "prezime": prezime, "dijagnoza": dijagnoza})
 
         redni_broj += 1
         
         return redirect(url_for('forma'))
     
-    return render_template('form.html', redni_broj=redni_broj, prog_jezici=prog_jezici)
+    return render_template('form.html', redni_broj=redni_broj, dijagnoze=dijagnoze)
 
 
 @app.route('/rezultati', methods=['get', 'post'])
