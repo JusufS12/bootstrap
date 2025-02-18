@@ -31,7 +31,7 @@ def columns_unequal_3():
 @app.route("/forma", methods=['get', 'post'])
 def forma():
 
-    dijagnoze = ['C++', 'Java', 'JavaScript', 'Python', 'Fortran', 'Basic', 'Ruby', 'Rust']
+    dijagnoze = ['dijabetes', 'šizofrenija', 'hepatitis', 'SIDA', 'herpes']
     
     data = HandleJson('data.json')
     
